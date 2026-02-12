@@ -36,6 +36,7 @@
         margin-top: 25px;
         position: relative;
         height: 100px;
+        width: 100%;
     }
 
     button {
@@ -44,7 +45,7 @@
         border-radius: 12px;
         border: none;
         cursor: pointer;
-        transition: 0.2s;
+        transition: 0.1s;
         position: absolute;
     }
 
@@ -52,12 +53,20 @@
         background: #ff4d6d;
         color: white;
         left: 30%;
+        z-index: 20;
     }
 
     #no {
         background: #888;
         color: white;
         left: 60%;
+        transition: all 0.15s ease;
+        z-index: 30;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    #no:hover {
+        background: #a0a0a0;
     }
 
     .celebrate {
@@ -133,14 +142,27 @@
         color: #333;
         font-weight: bold;
     }
+    
+    /* Shy button animation */
+    @keyframes shy {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.9); }
+        100% { transform: scale(1); }
+    }
+    
+    .shy-animation {
+        animation: shy 0.3s ease;
+    }
 </style>
 </head>
 
 <body>
 
 <div class="card" id="mainCard">
-    <h1>Hey Love ❤️</h1>
-    <p>Will you be my Valentine? 🥺</p>
+    <h1>Hey Vana 🫰🏼 ❤️</h1>
+    <p>Will you be my Valentine?</p>
+    <p> 🥺 </p>
+    <p>👉🏼👈🏼</p>
 
     <div class="buttons">
         <button id="yes">YES 💕</button>
@@ -152,7 +174,7 @@
     <!-- This creates the animated hearts background via CSS ::before -->
     <div class="celebration-content">
         <div class="fireworks">🎆 🎇 🎆</div>
-        <h1>YAY!!! ❤️</h1>
+        <h1>HOOOOOORRRRAAAAAYYYYY!!! ❤️</h1>
         <p>You just made me the happiest person alive 🥰</p>
         
         <!-- Your Valentine's GIF from HappyShappy -->
@@ -165,26 +187,90 @@
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 const celebrate = document.getElementById("celebrate");
+const buttonsContainer = document.querySelector(".buttons");
 
-let scale = 1;
+let shynessLevel = 1; // How small the button gets
+let escapeAttempts = 0; // Count how many times it runs away
 
-noBtn.addEventListener("mouseover", () => {
-    const maxX = window.innerWidth - 100;
-    const maxY = window.innerHeight - 60;
-
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-
+// Function to make the NO button run away
+function makeNoButtonRunAway() {
+    // Get container boundaries
+    const containerRect = buttonsContainer.getBoundingClientRect();
+    const noBtnRect = noBtn.getBoundingClientRect();
+    
+    // Calculate available space (with padding)
+    const maxX = containerRect.width - noBtnRect.width - 20;
+    const maxY = containerRect.height - noBtnRect.height - 20;
+    
+    // Make sure we stay within the container
+    const minX = 10;
+    const minY = 10;
+    
+    // Generate random position within container
+    let randomX = Math.min(Math.max(Math.random() * maxX, minX), maxX);
+    let randomY = Math.min(Math.max(Math.random() * maxY, minY), maxY);
+    
+    // Apply new position
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
+    
+    // Button gets shyer (smaller) each time it runs away
+    escapeAttempts++;
+    shynessLevel = Math.max(0.5, 1 - (escapeAttempts * 0.03)); // Don't go below 0.5 scale
+    
+    noBtn.style.transform = `scale(${shynessLevel})`;
+    
+    // Add a little "shy" animation
+    noBtn.classList.add('shy-animation');
+    setTimeout(() => {
+        noBtn.classList.remove('shy-animation');
+    }, 300);
+    
+    // Optional: Change text occasionally
+    if (escapeAttempts > 5) {
+        noBtn.textContent = "🙈";
+    } else if (escapeAttempts > 3) {
+        noBtn.textContent = "NO 🙈";
+    }
+}
 
-    scale -= 0.05;
-    noBtn.style.transform = `scale(${scale})`;
+// Make NO button run away on hover
+noBtn.addEventListener("mouseover", function(e) {
+    makeNoButtonRunAway();
 });
 
+// Make NO button run away when clicked (trying to catch it)
+noBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    makeNoButtonRunAway();
+});
+
+// Keep NO button inside container on window resize
+window.addEventListener("resize", function() {
+    // Reset position to original if it goes out of bounds
+    const containerRect = buttonsContainer.getBoundingClientRect();
+    const noBtnRect = noBtn.getBoundingClientRect();
+    
+    if (noBtnRect.right > containerRect.right || 
+        noBtnRect.left < containerRect.left ||
+        noBtnRect.bottom > containerRect.bottom || 
+        noBtnRect.top < containerRect.top) {
+        
+        // Reset to default position
+        noBtn.style.left = "60%";
+        noBtn.style.top = "";
+        noBtn.style.transform = `scale(${shynessLevel})`;
+    }
+});
+
+// YES button click - show celebration
 yesBtn.addEventListener("click", () => {
     celebrate.style.display = "flex";
 });
+
+// Prevent YES button from moving
+yesBtn.style.position = "absolute";
 </script>
 
 </body>
