@@ -18,55 +18,78 @@
         text-align: center;
     }
 
+    /* MAIN CARD - WIDE AND BEAUTIFUL */
     .card {
         background: white;
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding: 50px 80px;
+        border-radius: 45px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
         position: relative;
-        max-width: 1500px;
+        max-width: 800px;
+        width: 90%;
         z-index: 10;
+        border: 3px solid rgba(255, 255, 255, 0.8);
     }
 
     h1 {
         color: #ff4d6d;
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+    
+    .card p {
+        font-size: 28px;
+        color: #555;
+    }
+    
+    .card h2 {
+        font-size: 48px;
+        margin: 10px 0;
     }
 
     .buttons {
-        margin-top: 25px;
+        margin-top: 35px;
         position: relative;
-        height: 100px;
+        height: 120px;
         width: 100%;
     }
 
     button {
-        padding: 12px 25px;
-        font-size: 18px;
-        border-radius: 12px;
+        padding: 15px 35px;
+        font-size: 22px;
+        border-radius: 50px;
         border: none;
         cursor: pointer;
         transition: 0.1s;
         position: absolute;
+        font-weight: bold;
     }
 
     #yes {
         background: #ff4d6d;
         color: white;
-        left: 30%;
+        left: 25%;
         z-index: 20;
+        box-shadow: 0 8px 0 #d43f5e;
+    }
+    
+    #yes:hover {
+        transform: translateY(4px);
+        box-shadow: 0 4px 0 #d43f5e;
     }
 
     #no {
         background: #888;
         color: white;
-        left: 60%;
+        left: 55%;
         transition: all 0.15s ease;
         z-index: 30;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 0 #5a5a5a;
     }
     
     #no:hover {
         background: #a0a0a0;
+        box-shadow: 0 6px 0 #5a5a5a;
     }
 
     .celebrate {
@@ -96,16 +119,17 @@
         z-index: -1;
     }
 
-    /* Content box to sit above the animated background */
+    /* Celebration card */
     .celebration-content {
-        background: rgba(255, 255, 255, 0.85);
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 50px 80px;
+        border-radius: 45px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         text-align: center;
-        max-width: 1500px;
-        backdrop-filter: blur(5px);
-        border: 2px solid rgba(255, 255, 255, 0.5);
+        max-width: 900px;
+        width: 90%;
+        backdrop-filter: blur(8px);
+        border: 3px solid rgba(255, 255, 255, 0.6);
     }
 
     @keyframes pop {
@@ -114,7 +138,7 @@
     }
 
     .fireworks {
-        font-size: 70px;
+        font-size: 80px;
         animation: float 1s infinite alternate;
     }
 
@@ -123,24 +147,72 @@
         to {transform: translateY(-10px);}
     }
 
-    .celebrate img {
-        width: 300px;
-        margin-top: 20px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        border: 3px solid white;
+    /* GIF CONTAINER WITH TRANSITION - FIXED SIZE */
+    .gif-container {
+        position: relative;
+        width: 350px;
+        height: 350px; /* Fixed height to match width */
+        margin: 25px auto 0;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        border: 4px solid white;
+        background: #ffe6e6; /* Soft background while loading */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
-    /* Make text stand out on the animated background */
+    .gif-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* This makes GIFs fill the space perfectly */
+        border-radius: 20px;
+        transition: opacity 1.5s ease-in-out;
+    }
+    
+    /* First GIF - Leonardo DiCaprio */
+    #gif-first {
+        opacity: 1;
+        z-index: 2;
+    }
+    
+    /* Second GIF - HappyShappy */
+    #gif-second {
+        opacity: 0;
+        z-index: 3;
+    }
+    
+    /* Make text stand out */
     .celebration-content h1 {
         color: #ff4d6d;
-        text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
+        font-size: 48px;
+        text-shadow: 3px 3px 0 rgba(255,255,255,0.8);
+        margin-bottom: 20px;
     }
     
     .celebration-content p {
-        font-size: 18px;
+        font-size: 24px;
         color: #333;
         font-weight: bold;
+    }
+    
+    /* YOU MAKE MY HEART TWERK - Special styling */
+    .heart-twerk {
+        font-size: 32px;
+        color: #ff4d6d;
+        margin-top: 25px;
+        font-weight: bold;
+        text-shadow: 2px 2px 0 rgba(255,200,200,0.5);
+        animation: twerk 0.5s infinite alternate;
+    }
+    
+    @keyframes twerk {
+        from { transform: scale(1) rotate(-2deg); }
+        to { transform: scale(1.1) rotate(2deg); }
     }
     
     /* Shy button animation */
@@ -153,6 +225,41 @@
     .shy-animation {
         animation: shy 0.3s ease;
     }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+        .card {
+            padding: 40px 40px;
+            max-width: 90%;
+        }
+        
+        .celebration-content {
+            padding: 40px 30px;
+            max-width: 90%;
+        }
+        
+        h1 {
+            font-size: 32px;
+        }
+        
+        .celebration-content h1 {
+            font-size: 36px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+        }
+        
+        .gif-container {
+            width: 280px;
+            height: 280px;
+        }
+        
+        .heart-twerk {
+            font-size: 26px;
+        }
+    }
 </style>
 </head>
 
@@ -161,7 +268,7 @@
 <div class="card" id="mainCard">
     <h1>Hey Vana 🫰🏼 ❤️</h1>
     <p>Will you be my Valentine?</p>
-    <h2> 🥺 </h2>
+    <h2>🥺</h2>
     <h2>👉🏼👈🏼</h2>
 
     <div class="buttons">
@@ -171,15 +278,24 @@
 </div>
 
 <div class="celebrate" id="celebrate">
-    <!-- This creates the animated hearts background via CSS ::before -->
     <div class="celebration-content">
         <div class="fireworks">🎆 🎇 🎆</div>
-        <h1>HOOOOORRRRAAAAAYYYYY!!! ❤️</h1>
-        <p>You just made me the happiest person alive 🥰</p>
+        <h1 id="celebration-title">HOOOOORRRRAAAAAYYYYY!!! ❤️</h1>
+        <p id="celebration-text">You just made me the happiest person alive 🥰</p>
         
-        <!-- Your Valentine's GIF from HappyShappy -->
-        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFhNGJ1eXYzcmVxa3ZtMDAxbjNxcGlkM2ZvMDVobDEyZGM3M2owMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KD1D49tK4Hvl6E5q1T/giphy.gif" 
-             alt="Cute Valentine's Day GIF">
+        <!-- YOU MAKE MY HEART TWERK - Added from your image! -->
+        <div class="heart-twerk">💓 YOU MAKE MY HEART TWERK! 💓</div>
+        
+        <!-- GIF CONTAINER WITH 5-SECOND TRANSITION -->
+        <div class="gif-container">
+            <!-- First GIF: Leonardo DiCaprio cheers - STAYS FOR 5 SECONDS -->
+            <img id="gif-first" src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZTczeHkyeHRtanRhMDVyMjM2eWlreHZuOG5hMTk2MTc5dGJuYW5rMCZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/g9582DNuQppxC/giphy.gif" 
+                 alt="Leonardo DiCaprio cheers GIF">
+            
+            <!-- Second GIF: HappyShappy Valentine's GIF - FADES IN AFTER 5 SECONDS -->
+            <img id="gif-second" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFhNGJ1eXYzcmVxa3ZtMDAxbjNxcGlkM2ZvMDVobDEyZGM3M2owMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KD1D49tK4Hvl6E5q1T/giphy.gif" 
+                 alt="Cute Valentine's Day GIF">
+        </div>
     </div>
 </div>
 
@@ -189,44 +305,39 @@ const yesBtn = document.getElementById("yes");
 const celebrate = document.getElementById("celebrate");
 const buttonsContainer = document.querySelector(".buttons");
 
-let shynessLevel = 1; // How small the button gets
-let escapeAttempts = 0; // Count how many times it runs away
+// GIF transition elements
+const gifFirst = document.getElementById("gif-first");
+const gifSecond = document.getElementById("gif-second");
 
-// Function to make the NO button run away
+let shynessLevel = 1;
+let escapeAttempts = 0;
+
 function makeNoButtonRunAway() {
-    // Get container boundaries
     const containerRect = buttonsContainer.getBoundingClientRect();
     const noBtnRect = noBtn.getBoundingClientRect();
     
-    // Calculate available space (with padding)
-    const maxX = containerRect.width - noBtnRect.width - 20;
-    const maxY = containerRect.height - noBtnRect.height - 20;
+    const maxX = containerRect.width - noBtnRect.width - 30;
+    const maxY = containerRect.height - noBtnRect.height - 30;
     
-    // Make sure we stay within the container
-    const minX = 10;
-    const minY = 10;
+    const minX = 15;
+    const minY = 15;
     
-    // Generate random position within container
     let randomX = Math.min(Math.max(Math.random() * maxX, minX), maxX);
     let randomY = Math.min(Math.max(Math.random() * maxY, minY), maxY);
     
-    // Apply new position
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
     
-    // Button gets shyer (smaller) each time it runs away
     escapeAttempts++;
-    shynessLevel = Math.max(0.5, 1 - (escapeAttempts * 0.03)); // Don't go below 0.5 scale
+    shynessLevel = Math.max(0.5, 1 - (escapeAttempts * 0.03));
     
     noBtn.style.transform = `scale(${shynessLevel})`;
     
-    // Add a little "shy" animation
     noBtn.classList.add('shy-animation');
     setTimeout(() => {
         noBtn.classList.remove('shy-animation');
     }, 300);
     
-    // Optional: Change text occasionally
     if (escapeAttempts > 5) {
         noBtn.textContent = "🙈";
     } else if (escapeAttempts > 3) {
@@ -234,21 +345,17 @@ function makeNoButtonRunAway() {
     }
 }
 
-// Make NO button run away on hover
 noBtn.addEventListener("mouseover", function(e) {
     makeNoButtonRunAway();
 });
 
-// Make NO button run away when clicked (trying to catch it)
 noBtn.addEventListener("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
     makeNoButtonRunAway();
 });
 
-// Keep NO button inside container on window resize
 window.addEventListener("resize", function() {
-    // Reset position to original if it goes out of bounds
     const containerRect = buttonsContainer.getBoundingClientRect();
     const noBtnRect = noBtn.getBoundingClientRect();
     
@@ -257,19 +364,37 @@ window.addEventListener("resize", function() {
         noBtnRect.bottom > containerRect.bottom || 
         noBtnRect.top < containerRect.top) {
         
-        // Reset to default position
-        noBtn.style.left = "60%";
-        noBtn.style.top = "";
+        noBtn.style.left = "55%";
+        noBtn.style.top = "25px";
         noBtn.style.transform = `scale(${shynessLevel})`;
     }
 });
 
-// YES button click - show celebration
+// YES BUTTON - SHOW CELEBRATION WITH 5-SECOND GIF TRANSITION
 yesBtn.addEventListener("click", () => {
+    // Show celebration screen
     celebrate.style.display = "flex";
+    
+    // RESET GIF TRANSITION - Leo is visible, Valentine GIF is hidden
+    gifFirst.style.opacity = "1";
+    gifSecond.style.opacity = "0";
+    gifFirst.style.zIndex = "2";
+    gifSecond.style.zIndex = "3";
+    
+    // Clear any existing timers to prevent multiple transitions
+    if (window.transitionTimer) {
+        clearTimeout(window.transitionTimer);
+    }
+    
+    // LEOPOLD DICAPRIO CHEERS FOR A FULL 5 SECONDS! 🎬
+    window.transitionTimer = setTimeout(() => {
+        // Fade out Leonardo DiCaprio GIF
+        gifFirst.style.opacity = "0";
+        // Fade in HappyShappy Valentine's GIF to FULL SIZE
+        gifSecond.style.opacity = "1";
+    }, 5000); // 5000 milliseconds = 5 seconds! 
 });
 
-// Prevent YES button from moving
 yesBtn.style.position = "absolute";
 </script>
 
