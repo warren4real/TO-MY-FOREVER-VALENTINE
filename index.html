@@ -25,6 +25,7 @@
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         position: relative;
         max-width: 350px;
+        z-index: 10;
     }
 
     h1 {
@@ -62,13 +63,40 @@
     .celebrate {
         position: fixed;
         inset: 0;
-        background: white;
         display: none;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         animation: pop 0.5s ease;
         z-index: 100;
+    }
+
+    /* Background GIF layer */
+    .celebrate::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3YndlMGwwOHNzcDQ4Y2NvZjd4d3ZoYmVwNGwzM24zeWN6aW13MDE5dyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7TKoWXm3okO1kgHC/giphy.gif');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.9;
+        z-index: -1;
+    }
+
+    /* Content box to sit above the animated background */
+    .celebration-content {
+        background: rgba(255, 255, 255, 0.85);
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        text-align: center;
+        max-width: 400px;
+        backdrop-filter: blur(5px);
+        border: 2px solid rgba(255, 255, 255, 0.5);
     }
 
     @keyframes pop {
@@ -86,11 +114,24 @@
         to {transform: translateY(-10px);}
     }
 
-    img {
-        width: 250px;
+    .celebrate img {
+        width: 200px;
         margin-top: 20px;
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        border: 3px solid white;
+    }
+    
+    /* Make text stand out on the animated background */
+    .celebration-content h1 {
+        color: #ff4d6d;
+        text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
+    }
+    
+    .celebration-content p {
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
     }
 </style>
 </head>
@@ -108,13 +149,16 @@
 </div>
 
 <div class="celebrate" id="celebrate">
-    <div class="fireworks">🎆 🎇 🎆</div>
-    <h1>YAY!!! ❤️</h1>
-    <p>You just made me the happiest person alive 🥰</p>
-    
-    <!-- Your new Valentine's GIF from HappyShappy -->
-    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFhNGJ1eXYzcmVxa3ZtMDAxbjNxcGlkM2ZvMDVobDEyZGM3M2owMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KD1D49tK4Hvl6E5q1T/giphy.gif" 
-         alt="Cute Valentine's Day GIF">
+    <!-- This creates the animated hearts background via CSS ::before -->
+    <div class="celebration-content">
+        <div class="fireworks">🎆 🎇 🎆</div>
+        <h1>YAY!!! ❤️</h1>
+        <p>You just made me the happiest person alive 🥰</p>
+        
+        <!-- Your Valentine's GIF from HappyShappy -->
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFhNGJ1eXYzcmVxa3ZtMDAxbjNxcGlkM2ZvMDVobDEyZGM3M2owMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KD1D49tK4Hvl6E5q1T/giphy.gif" 
+             alt="Cute Valentine's Day GIF">
+    </div>
 </div>
 
 <script>
