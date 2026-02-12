@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MY FOREVER VALENTINE ❤️</title>
+<title>WILL YOU BE MY VALENTINE? ❤️</title>
 
 <style>
     body {
@@ -20,53 +20,78 @@
 
     .card {
         background: white;
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding: 60px 50px;
+        border-radius: 100px / 80px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         position: relative;
-        max-width: 350px;
+        max-width: 450px;
+        width: 80%;
         z-index: 10;
+        border: 3px solid rgba(255, 255, 255, 0.8);
     }
 
     h1 {
         color: #ff4d6d;
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    
+    .card p {
+        font-size: 24px;
+        color: #555;
+        margin: 10px 0;
+    }
+    
+    .card h2 {
+        font-size: 40px;
+        margin: 5px 0;
+        color: #ff4d6d;
     }
 
     .buttons {
-        margin-top: 25px;
+        margin-top: 35px;
         position: relative;
-        height: 100px;
+        height: 120px;
         width: 100%;
     }
 
     button {
-        padding: 12px 25px;
-        font-size: 18px;
-        border-radius: 12px;
+        padding: 16px 35px;
+        font-size: 22px;
+        border-radius: 50px;
         border: none;
         cursor: pointer;
         transition: 0.1s;
         position: absolute;
+        font-weight: bold;
+        letter-spacing: 2px;
     }
 
     #yes {
         background: #ff4d6d;
         color: white;
-        left: 30%;
+        left: 25%;
         z-index: 20;
+        box-shadow: 0 8px 0 #d43f5e, 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    #yes:hover {
+        transform: translateY(4px);
+        box-shadow: 0 4px 0 #d43f5e, 0 10px 20px rgba(0,0,0,0.2);
     }
 
     #no {
         background: #888;
         color: white;
-        left: 60%;
+        left: 55%;
         transition: all 0.15s ease;
         z-index: 30;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 0 #5a5a5a, 0 10px 20px rgba(0,0,0,0.2);
     }
     
     #no:hover {
         background: #a0a0a0;
+        box-shadow: 0 6px 0 #5a5a5a, 0 10px 20px rgba(0,0,0,0.2);
     }
 
     .celebrate {
@@ -76,7 +101,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        animation: pop 0.5s ease;
+        animation: pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         z-index: 100;
     }
 
@@ -96,62 +121,101 @@
         z-index: -1;
     }
 
-    /* Content box to sit above the animated background */
+    /* Content box to sit above the animated background - BIGGER OVAL */
     .celebration-content {
-        background: rgba(255, 255, 255, 0.85);
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 70px 60px;
+        border-radius: 200px / 120px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         text-align: center;
-        max-width: 400px;
-        backdrop-filter: blur(5px);
-        border: 2px solid rgba(255, 255, 255, 0.5);
+        max-width: 550px;
+        width: 75%;
+        backdrop-filter: blur(8px);
+        border: 4px solid rgba(255, 255, 255, 0.7);
     }
 
     @keyframes pop {
-        from {transform: scale(0);}
-        to {transform: scale(1);}
+        0% { transform: scale(0); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
     }
 
     .fireworks {
-        font-size: 70px;
-        animation: float 1s infinite alternate;
+        font-size: 90px;
+        animation: float 1.5s infinite alternate ease-in-out;
+        margin-bottom: 10px;
     }
 
     @keyframes float {
-        from {transform: translateY(0);}
-        to {transform: translateY(-10px);}
+        from { transform: translateY(0); }
+        to { transform: translateY(-15px); }
     }
 
     .celebrate img {
-        width: 200px;
-        margin-top: 20px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        border: 3px solid white;
+        width: 250px;
+        margin-top: 25px;
+        border-radius: 30px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        border: 5px solid white;
     }
     
     /* Make text stand out on the animated background */
     .celebration-content h1 {
         color: #ff4d6d;
-        text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
+        font-size: 48px;
+        margin-bottom: 20px;
+        text-shadow: 3px 3px 0 rgba(255,255,255,0.8);
+        line-height: 1.2;
     }
     
     .celebration-content p {
-        font-size: 18px;
+        font-size: 28px;
         color: #333;
         font-weight: bold;
+        margin: 15px 0;
+        line-height: 1.4;
     }
     
     /* Shy button animation */
     @keyframes shy {
         0% { transform: scale(1); }
-        50% { transform: scale(0.9); }
+        50% { transform: scale(0.85); }
         100% { transform: scale(1); }
     }
     
     .shy-animation {
         animation: shy 0.3s ease;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+        .card {
+            padding: 40px 30px;
+            border-radius: 80px / 60px;
+            width: 85%;
+        }
+        
+        .celebration-content {
+            padding: 50px 40px;
+            border-radius: 150px / 90px;
+            width: 80%;
+        }
+        
+        h1 {
+            font-size: 28px;
+        }
+        
+        .celebration-content h1 {
+            font-size: 36px;
+        }
+        
+        .celebration-content p {
+            font-size: 22px;
+        }
+        
+        button {
+            padding: 14px 25px;
+            font-size: 20px;
+        }
     }
 </style>
 </head>
@@ -159,10 +223,9 @@
 <body>
 
 <div class="card" id="mainCard">
-    <h1>Hey Vana 🫰🏼 ❤️</h1>
+    <h1>Hey Vana 🫰🏼❤️</h1>
     <p>Will you be my Valentine?</p>
-    <p> 🥺 </p>
-    <p>👉🏼👈🏼</p>
+    <h2>🥺👉🏼👈🏼</h2>
 
     <div class="buttons">
         <button id="yes">YES 💕</button>
@@ -174,8 +237,9 @@
     <!-- This creates the animated hearts background via CSS ::before -->
     <div class="celebration-content">
         <div class="fireworks">🎆 🎇 🎆</div>
-        <h1>HOOOOOORRRRAAAAAYYYYY!!! ❤️</h1>
+        <h1>HOOOOORRRRAAAAAYYYYY!!! ❤️</h1>
         <p>You just made me the happiest person alive 🥰</p>
+        <p style="font-size: 32px; color: #ff4d6d; margin-top: 25px;">YOU MAKE MY HEART TWERK! 💓</p>
         
         <!-- Your Valentine's GIF from HappyShappy -->
         <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFhNGJ1eXYzcmVxa3ZtMDAxbjNxcGlkM2ZvMDVobDEyZGM3M2owMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KD1D49tK4Hvl6E5q1T/giphy.gif" 
@@ -189,87 +253,74 @@ const yesBtn = document.getElementById("yes");
 const celebrate = document.getElementById("celebrate");
 const buttonsContainer = document.querySelector(".buttons");
 
-let shynessLevel = 1; // How small the button gets
-let escapeAttempts = 0; // Count how many times it runs away
+let shynessLevel = 1;
+let escapeAttempts = 0;
 
-// Function to make the NO button run away
 function makeNoButtonRunAway() {
-    // Get container boundaries
     const containerRect = buttonsContainer.getBoundingClientRect();
     const noBtnRect = noBtn.getBoundingClientRect();
     
-    // Calculate available space (with padding)
-    const maxX = containerRect.width - noBtnRect.width - 20;
-    const maxY = containerRect.height - noBtnRect.height - 20;
+    const maxX = containerRect.width - noBtnRect.width - 30;
+    const maxY = containerRect.height - noBtnRect.height - 30;
     
-    // Make sure we stay within the container
-    const minX = 10;
-    const minY = 10;
+    const minX = 15;
+    const minY = 15;
     
-    // Generate random position within container
     let randomX = Math.min(Math.max(Math.random() * maxX, minX), maxX);
     let randomY = Math.min(Math.max(Math.random() * maxY, minY), maxY);
     
-    // Apply new position
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
     
-    // Button gets shyer (smaller) each time it runs away
     escapeAttempts++;
-    shynessLevel = Math.max(0.5, 1 - (escapeAttempts * 0.03)); // Don't go below 0.5 scale
+    shynessLevel = Math.max(0.5, 1 - (escapeAttempts * 0.025));
     
     noBtn.style.transform = `scale(${shynessLevel})`;
     
-    // Add a little "shy" animation
     noBtn.classList.add('shy-animation');
     setTimeout(() => {
         noBtn.classList.remove('shy-animation');
     }, 300);
     
-    // Optional: Change text occasionally
-    if (escapeAttempts > 5) {
+    if (escapeAttempts > 8) {
         noBtn.textContent = "🙈";
+        noBtn.style.fontSize = "24px";
+    } else if (escapeAttempts > 5) {
+        noBtn.textContent = "NO 🙈";
     } else if (escapeAttempts > 3) {
         noBtn.textContent = "NO 🙈";
     }
 }
 
-// Make NO button run away on hover
 noBtn.addEventListener("mouseover", function(e) {
     makeNoButtonRunAway();
 });
 
-// Make NO button run away when clicked (trying to catch it)
 noBtn.addEventListener("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
     makeNoButtonRunAway();
 });
 
-// Keep NO button inside container on window resize
 window.addEventListener("resize", function() {
-    // Reset position to original if it goes out of bounds
     const containerRect = buttonsContainer.getBoundingClientRect();
     const noBtnRect = noBtn.getBoundingClientRect();
     
-    if (noBtnRect.right > containerRect.right || 
-        noBtnRect.left < containerRect.left ||
-        noBtnRect.bottom > containerRect.bottom || 
-        noBtnRect.top < containerRect.top) {
+    if (noBtnRect.right > containerRect.right - 10 || 
+        noBtnRect.left < containerRect.left + 10 ||
+        noBtnRect.bottom > containerRect.bottom - 10 || 
+        noBtnRect.top < containerRect.top + 10) {
         
-        // Reset to default position
-        noBtn.style.left = "60%";
-        noBtn.style.top = "";
+        noBtn.style.left = "55%";
+        noBtn.style.top = "15px";
         noBtn.style.transform = `scale(${shynessLevel})`;
     }
 });
 
-// YES button click - show celebration
 yesBtn.addEventListener("click", () => {
     celebrate.style.display = "flex";
 });
 
-// Prevent YES button from moving
 yesBtn.style.position = "absolute";
 </script>
 
