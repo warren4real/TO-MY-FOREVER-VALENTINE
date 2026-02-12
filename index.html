@@ -18,92 +18,55 @@
         text-align: center;
     }
 
-    /* MAIN OVAL CONTAINER - EXTRA OVAL NOW! */
     .card {
         background: white;
-        padding: 70px 60px;
-        border-radius: 200px / 120px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         position: relative;
-        max-width: 500px;
-        width: 80%;
+        max-width: 1000px;
         z-index: 10;
-        border: 4px solid rgba(255, 255, 255, 0.9);
-        transition: transform 0.3s ease;
-    }
-    
-    .card:hover {
-        transform: scale(1.02);
     }
 
     h1 {
         color: #ff4d6d;
-        font-size: 42px;
-        margin-bottom: 15px;
-        text-shadow: 2px 2px 0 rgba(255, 200, 200, 0.5);
-    }
-    
-    .card p {
-        font-size: 28px;
-        color: #555;
-        margin: 15px 0;
-        font-weight: bold;
-    }
-    
-    .card h2 {
-        font-size: 50px;
-        margin: 10px 0;
-        color: #ff4d6d;
-        letter-spacing: 10px;
     }
 
     .buttons {
-        margin-top: 40px;
+        margin-top: 25px;
         position: relative;
-        height: 140px;
+        height: 100px;
         width: 100%;
     }
 
     button {
-        padding: 18px 40px;
-        font-size: 24px;
-        border-radius: 60px;
+        padding: 12px 25px;
+        font-size: 18px;
+        border-radius: 12px;
         border: none;
         cursor: pointer;
         transition: 0.1s;
         position: absolute;
-        font-weight: bold;
-        letter-spacing: 3px;
-        text-transform: uppercase;
     }
 
     #yes {
         background: #ff4d6d;
         color: white;
-        left: 20%;
+        left: 30%;
         z-index: 20;
-        box-shadow: 0 10px 0 #d43f5e, 0 15px 30px rgba(0,0,0,0.3);
-        border: 2px solid #fff;
-    }
-    
-    #yes:hover {
-        transform: translateY(6px);
-        box-shadow: 0 4px 0 #d43f5e, 0 15px 30px rgba(0,0,0,0.3);
     }
 
     #no {
         background: #888;
         color: white;
-        left: 55%;
+        left: 60%;
         transition: all 0.15s ease;
         z-index: 30;
-        box-shadow: 0 10px 0 #5a5a5a, 0 15px 30px rgba(0,0,0,0.3);
-        border: 2px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     
     #no:hover {
         background: #a0a0a0;
-        box-shadow: 0 8px 0 #5a5a5a, 0 15px 30px rgba(0,0,0,0.3);
     }
 
     .celebrate {
@@ -113,7 +76,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        animation: pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: pop 0.5s ease;
         z-index: 100;
     }
 
@@ -133,127 +96,73 @@
         z-index: -1;
     }
 
-    /* CELEBRATION OVAL CONTAINER - SUPER OVAL! */
+    /* Content box to sit above the animated background */
     .celebration-content {
-        background: rgba(255, 255, 255, 0.92);
-        padding: 80px 70px;
-        border-radius: 250px / 140px;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+        background: rgba(255, 255, 255, 0.85);
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         text-align: center;
-        max-width: 600px;
-        width: 80%;
-        backdrop-filter: blur(10px);
-        border: 5px solid rgba(255, 255, 255, 0.8);
-        animation: float 3s infinite alternate ease-in-out;
+        max-width: 400px;
+        backdrop-filter: blur(5px);
+        border: 2px solid rgba(255, 255, 255, 0.5);
     }
 
     @keyframes pop {
-        0% { transform: scale(0); opacity: 0; }
-        100% { transform: scale(1); opacity: 1; }
+        from {transform: scale(0);}
+        to {transform: scale(1);}
     }
 
     .fireworks {
-        font-size: 100px;
-        animation: sparkle 1.5s infinite alternate ease-in-out;
-        margin-bottom: 15px;
+        font-size: 70px;
+        animation: float 1s infinite alternate;
     }
 
-    @keyframes sparkle {
-        from { transform: translateY(0) rotate(0deg); }
-        to { transform: translateY(-20px) rotate(5deg); }
-    }
-    
     @keyframes float {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-10px); }
+        from {transform: translateY(0);}
+        to {transform: translateY(-10px);}
     }
 
     .celebrate img {
-        width: 280px;
-        margin-top: 30px;
-        border-radius: 40px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        border: 6px solid white;
+        width: 200px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        border: 3px solid white;
     }
     
-    /* Celebration text styles */
+    /* Make text stand out on the animated background */
     .celebration-content h1 {
         color: #ff4d6d;
-        font-size: 54px;
-        margin-bottom: 25px;
-        text-shadow: 4px 4px 0 rgba(255,200,200,0.8);
-        line-height: 1.2;
-        word-break: break-word;
+        text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
     }
     
     .celebration-content p {
-        font-size: 32px;
+        font-size: 18px;
         color: #333;
         font-weight: bold;
-        margin: 20px 0;
-        line-height: 1.4;
     }
     
     /* Shy button animation */
     @keyframes shy {
         0% { transform: scale(1); }
-        50% { transform: scale(0.8); }
+        50% { transform: scale(0.9); }
         100% { transform: scale(1); }
     }
     
     .shy-animation {
         animation: shy 0.3s ease;
     }
-    
-    /* Responsive adjustments for mobile */
-    @media (max-width: 600px) {
-        .card {
-            padding: 50px 40px;
-            border-radius: 150px / 90px;
-            width: 85%;
-        }
-        
-        .celebration-content {
-            padding: 60px 40px;
-            border-radius: 180px / 100px;
-            width: 85%;
-        }
-        
-        h1 {
-            font-size: 32px;
-        }
-        
-        .celebration-content h1 {
-            font-size: 40px;
-        }
-        
-        .celebration-content p {
-            font-size: 24px;
-        }
-        
-        button {
-            padding: 14px 28px;
-            font-size: 20px;
-        }
-        
-        .card p {
-            font-size: 22px;
-        }
-        
-        .card h2 {
-            font-size: 40px;
-        }
-    }
 </style>
 </head>
 
 <body>
 
-<!-- MAIN OVAL CONTAINER - SUPER OVAL SHAPE -->
 <div class="card" id="mainCard">
-    <h1>Hey Vana 🫰🏼❤️</h1>
+    <h1>Hey Vana 🫰🏼 ❤️</h1>
     <p>Will you be my Valentine?</p>
-    <h2>🥺👉🏼👈🏼</h2>
+    <h2> 🥺 </h2>
+    <h2>👉🏼👈🏼</h2>
 
     <div class="buttons">
         <button id="yes">YES 💕</button>
@@ -261,15 +170,14 @@
     </div>
 </div>
 
-<!-- CELEBRATION OVAL CONTAINER - EXTRA OVAL -->
 <div class="celebrate" id="celebrate">
+    <!-- This creates the animated hearts background via CSS ::before -->
     <div class="celebration-content">
         <div class="fireworks">🎆 🎇 🎆</div>
         <h1>HOOOOORRRRAAAAAYYYYY!!! ❤️</h1>
         <p>You just made me the happiest person alive 🥰</p>
-        <p style="font-size: 36px; color: #ff4d6d; margin-top: 30px;">YOU MAKE MY HEART TWERK! 💓</p>
         
-        <!-- Valentine's GIF -->
+        <!-- Your Valentine's GIF from HappyShappy -->
         <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFhNGJ1eXYzcmVxa3ZtMDAxbjNxcGlkM2ZvMDVobDEyZGM3M2owMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KD1D49tK4Hvl6E5q1T/giphy.gif" 
              alt="Cute Valentine's Day GIF">
     </div>
@@ -281,72 +189,87 @@ const yesBtn = document.getElementById("yes");
 const celebrate = document.getElementById("celebrate");
 const buttonsContainer = document.querySelector(".buttons");
 
-let shynessLevel = 1;
-let escapeAttempts = 0;
+let shynessLevel = 1; // How small the button gets
+let escapeAttempts = 0; // Count how many times it runs away
 
+// Function to make the NO button run away
 function makeNoButtonRunAway() {
+    // Get container boundaries
     const containerRect = buttonsContainer.getBoundingClientRect();
     const noBtnRect = noBtn.getBoundingClientRect();
     
-    const maxX = containerRect.width - noBtnRect.width - 40;
-    const maxY = containerRect.height - noBtnRect.height - 40;
+    // Calculate available space (with padding)
+    const maxX = containerRect.width - noBtnRect.width - 20;
+    const maxY = containerRect.height - noBtnRect.height - 20;
     
-    const minX = 20;
-    const minY = 20;
+    // Make sure we stay within the container
+    const minX = 10;
+    const minY = 10;
     
+    // Generate random position within container
     let randomX = Math.min(Math.max(Math.random() * maxX, minX), maxX);
     let randomY = Math.min(Math.max(Math.random() * maxY, minY), maxY);
     
+    // Apply new position
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
     
+    // Button gets shyer (smaller) each time it runs away
     escapeAttempts++;
-    shynessLevel = Math.max(0.45, 1 - (escapeAttempts * 0.025));
+    shynessLevel = Math.max(0.5, 1 - (escapeAttempts * 0.03)); // Don't go below 0.5 scale
     
     noBtn.style.transform = `scale(${shynessLevel})`;
     
+    // Add a little "shy" animation
     noBtn.classList.add('shy-animation');
     setTimeout(() => {
         noBtn.classList.remove('shy-animation');
     }, 300);
     
-    if (escapeAttempts > 8) {
+    // Optional: Change text occasionally
+    if (escapeAttempts > 5) {
         noBtn.textContent = "🙈";
-        noBtn.style.fontSize = "28px";
-    } else if (escapeAttempts > 4) {
+    } else if (escapeAttempts > 3) {
         noBtn.textContent = "NO 🙈";
     }
 }
 
+// Make NO button run away on hover
 noBtn.addEventListener("mouseover", function(e) {
     makeNoButtonRunAway();
 });
 
+// Make NO button run away when clicked (trying to catch it)
 noBtn.addEventListener("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
     makeNoButtonRunAway();
 });
 
+// Keep NO button inside container on window resize
 window.addEventListener("resize", function() {
+    // Reset position to original if it goes out of bounds
     const containerRect = buttonsContainer.getBoundingClientRect();
     const noBtnRect = noBtn.getBoundingClientRect();
     
-    if (noBtnRect.right > containerRect.right - 15 || 
-        noBtnRect.left < containerRect.left + 15 ||
-        noBtnRect.bottom > containerRect.bottom - 15 || 
-        noBtnRect.top < containerRect.top + 15) {
+    if (noBtnRect.right > containerRect.right || 
+        noBtnRect.left < containerRect.left ||
+        noBtnRect.bottom > containerRect.bottom || 
+        noBtnRect.top < containerRect.top) {
         
-        noBtn.style.left = "55%";
-        noBtn.style.top = "20px";
+        // Reset to default position
+        noBtn.style.left = "60%";
+        noBtn.style.top = "";
         noBtn.style.transform = `scale(${shynessLevel})`;
     }
 });
 
+// YES button click - show celebration
 yesBtn.addEventListener("click", () => {
     celebrate.style.display = "flex";
 });
 
+// Prevent YES button from moving
 yesBtn.style.position = "absolute";
 </script>
 
