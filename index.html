@@ -22,6 +22,56 @@
         box-sizing: border-box;
     }
 
+    /* FLOATING HEARTS BACKGROUND */
+    .floating-hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .heart {
+        position: absolute;
+        font-size: 20px;
+        color: #ff4d6d;
+        opacity: 0.6;
+        animation: floatHeart 8s linear infinite;
+        user-select: none;
+    }
+
+    @keyframes floatHeart {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.8;
+        }
+        90% {
+            opacity: 0.8;
+        }
+        100% {
+            transform: translateY(-20vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* CONFETTI CANVAS */
+    #confetti-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 999;
+        display: none;
+    }
+
     /* MAIN CARD - FULLY RESPONSIVE */
     .card {
         background: white;
@@ -168,6 +218,46 @@
         to {transform: translateY(-10px);}
     }
 
+    /* PERSONALIZED VANA ANIMATION */
+    .personal-message {
+        margin: 20px 0 10px;
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .letter {
+        font-size: 48px;
+        font-weight: bold;
+        color: #ff4d6d;
+        text-shadow: 3px 3px 0 #ffb3c6;
+        animation: bounce 1s infinite alternate;
+        display: inline-block;
+    }
+
+    .heart-icon {
+        font-size: 48px;
+        animation: pulse 0.8s infinite alternate;
+    }
+
+    @keyframes bounce {
+        from { transform: translateY(0); }
+        to { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+        from { transform: scale(1); }
+        to { transform: scale(1.2); }
+    }
+
+    /* Stagger the animations */
+    .letter:nth-child(1) { animation-delay: 0s; }
+    .letter:nth-child(2) { animation-delay: 0.1s; }
+    .letter:nth-child(3) { animation-delay: 0.2s; }
+    .letter:nth-child(4) { animation-delay: 0.3s; }
+    .heart-icon { animation-delay: 0.4s; }
+
     /* GIF CONTAINER - FULLY RESPONSIVE */
     .gif-container {
         position: relative;
@@ -245,6 +335,42 @@
         to { transform: scale(1.05) rotate(1deg); }
     }
     
+    /* SECRET LOVE NOTE */
+    .secret-note-container {
+        margin-top: 25px;
+        position: relative;
+    }
+
+    .secret-heart {
+        font-size: 40px;
+        cursor: pointer;
+        animation: pulse 1s infinite;
+        display: inline-block;
+        transition: transform 0.3s;
+    }
+
+    .secret-heart:hover {
+        transform: scale(1.2);
+    }
+
+    .secret-message {
+        background: white;
+        color: #ff4d6d;
+        padding: 15px 25px;
+        border-radius: 50px;
+        font-size: 18px;
+        margin-top: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border: 2px dashed #ff4d6d;
+        display: none;
+        font-weight: bold;
+    }
+
+    .secret-message.show {
+        display: block;
+        animation: pop 0.3s ease;
+    }
+    
     /* Shy button animation */
     @keyframes shy {
         0% { transform: scale(1); }
@@ -254,6 +380,28 @@
     
     .shy-animation {
         animation: shy 0.3s ease;
+    }
+
+    /* MUSIC BUTTON */
+    .music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: white;
+        border: none;
+        font-size: 24px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        z-index: 1000;
+        border: 2px solid #ff4d6d;
+        transition: transform 0.2s;
+    }
+
+    .music-btn:hover {
+        transform: scale(1.1);
     }
     
     /* ========== MOBILE OPTIMIZATION ========== */
@@ -335,6 +483,14 @@
         .heart-twerk {
             font-size: 24px;
             margin-top: 15px;
+        }
+        
+        .letter {
+            font-size: 36px;
+        }
+        
+        .heart-icon {
+            font-size: 36px;
         }
     }
     
@@ -465,6 +621,14 @@
             font-size: 20px;
             margin-top: 10px;
         }
+        
+        .letter {
+            font-size: 28px;
+        }
+        
+        .heart-icon {
+            font-size: 28px;
+        }
     }
     
     /* Handle notches and safe areas */
@@ -504,6 +668,18 @@
 
 <body>
 
+<!-- FLOATING HEARTS BACKGROUND -->
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<!-- CONFETTI CANVAS -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- MUSIC BUTTON -->
+<audio id="bg-music" loop style="display: none;">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+<button id="music-toggle" class="music-btn">🔊</button>
+
 <div class="card" id="mainCard">
     <h1>Hey Vana 🫰🏼 ❤️</h1>
     <p>Will you be my Valentine?</p>
@@ -522,8 +698,18 @@
         <h1 id="celebration-title">HOOOOORRRRAAAAAYYYYY!!! ❤️</h1>
         <p id="celebration-text">You just made me the happiest person alive 🥰</p>
         
+        <!-- PERSONALIZED VANA ANIMATION -->
+        <div class="personal-message">
+            <span class="letter">V</span>
+            <span class="letter">A</span>
+            <span class="letter">N</span>
+            <span class="letter">A</span>
+            <span class="heart-icon">❤️</span>
+        </div>
+        
         <div class="heart-twerk">💓 YOU MAKE MY HEART TWERK! 💓</div>
         
+        <!-- GIF CONTAINER WITH 5-SECOND TRANSITION -->
         <div class="gif-container">
             <img id="gif-first" src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZTczeHkyeHRtanRhMDVyMjM2eWlreHZuOG5hMTk2MTc5dGJuYW5rMCZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/g9582DNuQppxC/giphy.gif" 
                  alt="Leonardo DiCaprio cheers GIF">
@@ -531,10 +717,20 @@
             <img id="gif-second" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTFhNGJ1eXYzcmVxa3ZtMDAxbjNxcGlkM2ZvMDVobDEyZGM3M2owMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KD1D49tK4Hvl6E5q1T/giphy.gif" 
                  alt="Cute Valentine's Day GIF">
         </div>
+        
+        <!-- SECRET LOVE NOTE -->
+        <div class="secret-note-container">
+            <div class="secret-heart" id="secretHeart">💌</div>
+            <div class="secret-message" id="secretMessage">
+                Vana, you're the best thing that's ever happened to me. 
+                Every day with you is a Valentine's Day. I love you! 💕
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
+// ========== ELEMENTS ==========
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 const celebrate = document.getElementById("celebrate");
@@ -543,6 +739,81 @@ const buttonsContainer = document.querySelector(".buttons");
 const gifFirst = document.getElementById("gif-first");
 const gifSecond = document.getElementById("gif-second");
 
+// ========== FLOATING HEARTS ==========
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = ['❤️', '💕', '💖', '💗', '💓', '🫰🏼'][Math.floor(Math.random() * 6)];
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.fontSize = (Math.random() * 30 + 15) + 'px';
+    heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    heart.style.opacity = Math.random() * 0.5 + 0.3;
+    document.getElementById('floatingHearts').appendChild(heart);
+    
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+// Create hearts every 500ms
+setInterval(createHeart, 500);
+
+// ========== CONFETTI ==========
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+let confettiParticles = [];
+
+function createConfetti() {
+    for (let i = 0; i < 100; i++) {
+        confettiParticles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            size: Math.random() * 8 + 4,
+            speed: Math.random() * 5 + 3,
+            color: `hsl(${Math.random() * 60 + 340}, 100%, 65%)`,
+            rotation: Math.random() * 360
+        });
+    }
+}
+
+function drawConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    for (let i = 0; i < confettiParticles.length; i++) {
+        const p = confettiParticles[i];
+        
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+        ctx.restore();
+        
+        p.y += p.speed;
+        p.rotation += 2;
+        
+        if (p.y > canvas.height) {
+            confettiParticles.splice(i, 1);
+            i--;
+        }
+    }
+    
+    if (confettiParticles.length > 0) {
+        requestAnimationFrame(drawConfetti);
+    } else {
+        canvas.style.display = 'none';
+    }
+}
+
+// ========== SHY BUTTON LOGIC ==========
 let shynessLevel = 1;
 let escapeAttempts = 0;
 let isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
@@ -614,10 +885,17 @@ window.addEventListener("resize", function() {
     }
 });
 
+// ========== YES BUTTON - SHOW CELEBRATION ==========
 yesBtn.addEventListener("click", () => {
     celebrate.style.display = "flex";
     document.body.style.overflow = "hidden";
     
+    // CONFETTI!
+    canvas.style.display = 'block';
+    createConfetti();
+    drawConfetti();
+    
+    // GIF TRANSITION
     gifFirst.style.opacity = "1";
     gifSecond.style.opacity = "0";
     gifFirst.style.zIndex = "2";
@@ -635,7 +913,31 @@ yesBtn.addEventListener("click", () => {
 
 yesBtn.style.position = "absolute";
 
-// Handle back button / close
+// ========== SECRET LOVE NOTE ==========
+const secretHeart = document.getElementById('secretHeart');
+const secretMessage = document.getElementById('secretMessage');
+
+secretHeart.addEventListener('click', () => {
+    secretMessage.classList.toggle('show');
+});
+
+// ========== MUSIC TOGGLE ==========
+const music = document.getElementById('bg-music');
+const musicToggle = document.getElementById('music-toggle');
+let musicPlaying = false;
+
+musicToggle.addEventListener('click', () => {
+    if (musicPlaying) {
+        music.pause();
+        musicToggle.textContent = '🔈';
+    } else {
+        music.play().catch(e => console.log('Autoplay prevented - click permission needed'));
+        musicToggle.textContent = '🔊';
+    }
+    musicPlaying = !musicPlaying;
+});
+
+// ========== HANDLE BACK BUTTON ==========
 window.addEventListener('popstate', function() {
     celebrate.style.display = "none";
     document.body.style.overflow = "auto";
