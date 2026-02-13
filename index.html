@@ -156,6 +156,32 @@
         box-shadow: 0 6px 0 #5a5a5a;
     }
 
+    /* NO BUTTON MESSAGE - ERROR THEME */
+    .no-message {
+        margin-top: 60px;
+        font-size: 22px;
+        color: #ff4d6d;
+        font-weight: bold;
+        text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
+        animation: fadeIn 0.3s ease;
+        min-height: 40px;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 12px 25px;
+        border-radius: 50px;
+        display: inline-block;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border: 2px solid white;
+        backdrop-filter: blur(5px);
+        font-family: 'Courier New', monospace;
+        letter-spacing: 1px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     .celebrate {
         position: fixed;
         inset: 0;
@@ -454,6 +480,12 @@
             left: 55%;
             width: 40%;
         }
+
+        .no-message {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 50px;
+        }
         
         .celebration-content {
             padding: 30px 20px;
@@ -598,6 +630,12 @@
             font-size: 32px;
             margin: 0;
         }
+
+        .no-message {
+            margin-top: 40px;
+            font-size: 18px;
+            padding: 8px 20px;
+        }
         
         .gif-container {
             width: 200px;
@@ -690,13 +728,16 @@
         <button id="yes">YES 💕</button>
         <button id="no">NO 🙈</button>
     </div>
+
+    <!-- NO BUTTON ERROR MESSAGE - EXACTLY AS REQUESTED -->
+    <div class="no-message" id="noMessage">Error: NO button not working 🤔</div>
 </div>
 
 <div class="celebrate" id="celebrate">
     <div class="celebration-content">
         <div class="fireworks">🎆 🎇 🎆</div>
-        <h1 id="celebration-title">SYSTEM CRASH: TOO MUCH JOY!!! 🤯❤️‍🔥❤️‍🔥</h1>
-        <p id="celebration-text">You = my favorite person forever!!! 👑🫰🏼</p>
+        <h1 id="celebration-title">WARREN + JEEVANA = 💞</h1>
+        <p id="celebration-text">My happiness meter just broke!!! 📊❤️</p>
         
         <!-- PERSONALIZED VANA ANIMATION -->
         <div class="personal-message">
@@ -722,7 +763,7 @@
         <div class="secret-note-container">
             <div class="secret-heart" id="secretHeart">💌</div>
             <div class="secret-message" id="secretMessage">
-                Vana, you're the best thing that's ever happened to me. 
+                Hi babe, Thank you for accepting I apprecite you so much. 
                 Every day with you is a Valentine's Day. I love you! 💕
             </div>
         </div>
@@ -735,6 +776,7 @@ const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 const celebrate = document.getElementById("celebrate");
 const buttonsContainer = document.querySelector(".buttons");
+const noMessage = document.getElementById("noMessage");
 
 const gifFirst = document.getElementById("gif-first");
 const gifSecond = document.getElementById("gif-second");
@@ -850,6 +892,13 @@ function makeNoButtonRunAway() {
     } else if (escapeAttempts > 4) {
         noBtn.textContent = "NO 🙈";
     }
+
+    // ANIMATE THE ERROR MESSAGE
+    if (noMessage) {
+        noMessage.style.animation = 'none';
+        noMessage.offsetHeight; // Trigger reflow
+        noMessage.style.animation = 'fadeIn 0.3s ease';
+    }
 }
 
 // Touch events for mobile
@@ -942,6 +991,9 @@ window.addEventListener('popstate', function() {
     celebrate.style.display = "none";
     document.body.style.overflow = "auto";
 });
+
+// ========== REPLACE [YOUR NAME] ==========
+// Don't forget to replace [YOUR NAME] with your actual name!
 </script>
 
 </body>
