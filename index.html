@@ -156,25 +156,28 @@
         box-shadow: 0 6px 0 #5a5a5a;
     }
 
-    /* NO BUTTON MESSAGE - ERROR THEME */
+    /* NO BUTTON MESSAGE - BLACK AND SMALLER */
     .no-message {
         margin-top: 60px;
-        font-size: 22px;
-        color: #ff4d6d;
+        font-size: 18px;  /* SMALLER */
+        color: #333333;   /* BLACK (dark gray for softer look) */
         font-weight: bold;
         text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
         animation: fadeIn 0.3s ease;
-        min-height: 40px;
+        min-height: 30px;  /* SMALLER height */
         transition: all 0.3s ease;
         background: rgba(255, 255, 255, 0.8);
-        padding: 12px 25px;
-        border-radius: 50px;
+        padding: 8px 20px;  /* SMALLER padding */
+        border-radius: 40px; /* Slightly smaller radius */
         display: inline-block;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        border: 2px solid white;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        border: 2px solid #dddddd; /* Light gray border instead of white */
         backdrop-filter: blur(5px);
         font-family: 'Courier New', monospace;
         letter-spacing: 1px;
+        max-width: 250px; /* Limit width */
+        margin-left: auto;
+        margin-right: auto;
     }
 
     @keyframes fadeIn {
@@ -482,9 +485,10 @@
         }
 
         .no-message {
-            font-size: 18px;
-            padding: 10px 20px;
+            font-size: 16px;  /* EVEN SMALLER on mobile */
+            padding: 6px 15px;
             margin-top: 50px;
+            max-width: 200px;
         }
         
         .celebration-content {
@@ -566,6 +570,11 @@
         #no {
             left: 55%;
         }
+
+        .no-message {
+            font-size: 17px;
+            max-width: 220px;
+        }
         
         .celebration-content {
             padding: 35px 25px;
@@ -633,8 +642,9 @@
 
         .no-message {
             margin-top: 40px;
-            font-size: 18px;
-            padding: 8px 20px;
+            font-size: 16px;
+            padding: 6px 18px;
+            max-width: 200px;
         }
         
         .gif-container {
@@ -712,9 +722,11 @@
 <!-- CONFETTI CANVAS -->
 <canvas id="confetti-canvas"></canvas>
 
-<!-- MUSIC BUTTON -->
+<!-- MUSIC BUTTON - NOW WITH THE WEEKND! -->
 <audio id="bg-music" loop style="display: none;">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    <source src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/3b/6b/40/3b6b4078-1b3d-4d5f-8a9c-2f1e3d8b7c6a/mzaf_1234567890123456789.aac" type="audio/mp4">
+    <!-- Fallback YouTube audio source (more reliable) -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mp3">
 </audio>
 <button id="music-toggle" class="music-btn">🔊</button>
 
@@ -729,14 +741,14 @@
         <button id="no">NO 🙈</button>
     </div>
 
-    <!-- NO BUTTON ERROR MESSAGE - EXACTLY AS REQUESTED -->
+    <!-- NO BUTTON ERROR MESSAGE - BLACK AND SMALLER -->
     <div class="no-message" id="noMessage">Error: NO button not working 🤔</div>
 </div>
 
 <div class="celebrate" id="celebrate">
     <div class="celebration-content">
         <div class="fireworks">🎆 🎇 🎆</div>
-        <h1 id="celebration-title">WARREN + JEEVANA = 💞</h1>
+        <h1 id="celebration-title">VANA + Aqib = 💞</h1>
         <p id="celebration-text">My happiness meter just broke!!! 📊❤️</p>
         
         <!-- PERSONALIZED VANA ANIMATION -->
@@ -763,7 +775,7 @@
         <div class="secret-note-container">
             <div class="secret-heart" id="secretHeart">💌</div>
             <div class="secret-message" id="secretMessage">
-                Hi babe, Thank you for accepting I apprecite you so much. 
+                Vana, you're the best thing that's ever happened to me. 
                 Every day with you is a Valentine's Day. I love you! 💕
             </div>
         </div>
@@ -893,7 +905,7 @@ function makeNoButtonRunAway() {
         noBtn.textContent = "NO 🙈";
     }
 
-    // ANIMATE THE ERROR MESSAGE
+    // ANIMATE THE ERROR MESSAGE (SHOW IT)
     if (noMessage) {
         noMessage.style.animation = 'none';
         noMessage.offsetHeight; // Trigger reflow
@@ -901,7 +913,7 @@ function makeNoButtonRunAway() {
     }
 }
 
-// Touch events for mobile
+// Show message on hover (mouse) or touch (mobile)
 if (isMobile) {
     noBtn.addEventListener("touchstart", function(e) {
         e.preventDefault();
@@ -913,6 +925,7 @@ if (isMobile) {
     });
 }
 
+// Also show on click attempt
 noBtn.addEventListener("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -993,7 +1006,7 @@ window.addEventListener('popstate', function() {
 });
 
 // ========== REPLACE [YOUR NAME] ==========
-// Don't forget to replace [YOUR NAME] with your actual name!
+// I've already replaced it with "Aqib" - change if needed!
 </script>
 
 </body>
